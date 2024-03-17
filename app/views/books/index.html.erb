@@ -1,0 +1,42 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+  <%= render 'users/list', user: @user, book: @book %>
+<div class="col-md-8 offset-md-1">
+<h1>Books</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+<% @books.each do |book| %>
+ <table class="table table-striped">
+     <th><%= link_to user_path(book.user.id) do %>
+       <%= image_tag book.user.get_profile_image(100,100) %>
+       <% end %></th>
+    <th><%= link_to book_path(book.id) do %>
+       <%= book.title %>
+       <% end %>
+    </th>
+    <th><%= book.body %></th>
+<% end %>
+</tr>
+  </thead>
+</table>
+  </div>
+ </div>
+</div>
